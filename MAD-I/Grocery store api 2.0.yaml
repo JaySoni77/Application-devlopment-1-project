@@ -1,0 +1,456 @@
+openapi: 3.0.3
+info:
+  title: Grocery Store
+  description: |-
+    _This is api specification page for Grocery Store web application_
+    <h1>E-R Model</h1>
+    <table>
+        <thead>
+            <th>Resource</th>
+            <th>Error Code</th>
+            <th>Description</th>
+        </thead>
+        <tbody>
+            <tr>
+            <td>Category</td>
+            <td>101</td>
+            <td>name is required</td>
+        </tr>
+        <tr>
+            <td>Category</td>
+            <td>102</td>
+            <td>description is required</td>
+        </tr><tr>
+            <td>Category</td>
+            <td>103</td>
+            <td>duplicate name</td>
+        </tr><tr>
+            <td>Category</td>
+            <td>104</td>
+            <td>category not found</td>
+        </tr>
+        <tr>
+            <td>Category</td>
+            <td>105</td>
+            <td>Can't delete category. As there are product in this category</td>
+        </tr><br>
+        </tbody>
+    </table>
+    <img src="https://mermaid.ink/img/pako:eNp1kmFrgzAQhv9KOOi32h_gt6JhCOscagsFYWTJrQ3TpMRYKOp_X6x1uknv27333Hshdw1wLRB8QBNKdjKszBVxETCLJ21upBnyPqSyhDPLev1DiqlQWSPViShW4kIUWHEjL1ZqNdXG6AZptSLBPs3iHU1I1242bUNC-hodaHL0tmGY0DQlPjmzaom3refphsRJ6BKfXArG8TkWvR3iKKAOzKGQ7LNA8qVNDr8Ni7H__A1ylNfZhNGx59qJ4_qKZqIGec54UUZ3DpSKF7WYGb4ncbgPMi_YZvQlTo5j10O_eyvLpFq0_Hnr6J-DNgINCjcpB1hDiaZkUriN3zebgz2jWxv0qGDmu_-MznGstjq9KQ6-NTWuob4IdxKPGxnE7gflk6j5?type=png)](https://mermaid.live/edit#pako:eNp1kmFrgzAQhv9KOOi32h_gt6JhCOscagsFYWTJrQ3TpMRYKOp_X6x1uknv27333Hshdw1wLRB8QBNKdjKszBVxETCLJ21upBnyPqSyhDPLev1DiqlQWSPViShW4kIUWHEjL1ZqNdXG6AZptSLBPs3iHU1I1242bUNC-hodaHL0tmGY0DQlPjmzaom3refphsRJ6BKfXArG8TkWvR3iKKAOzKGQ7LNA8qVNDr8Ni7H__A1ylNfZhNGx59qJ4_qKZqIGec54UUZ3DpSKF7WYGb4ncbgPMi_YZvQlTo5j10O_eyvLpFq0_Hnr6J-DNgINCjcpB1hDiaZkUriN3zebgz2jWxv0qGDmu_-MznGstjq9KQ6-NTWuob4IdxKPGxnE7gflk6j5" />
+  version: 1.0.0
+  contact:
+    email: jaythadeshwar0@gmail.com
+servers:
+  - url: http://127.0.0.1:5000/
+paths:
+  /category/{name}:
+    description: This is Grocery store api
+    get:
+      tags:
+        - Category
+      summary: Get Information about Grocery store Category
+      description: Get Information about Grocery store Category
+      parameters:
+        - in: path
+          name: name
+          required: true
+          description: Enter Name of Category
+          schema:
+            type: string
+            example: beverages
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                title: Category object
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: beverages
+                  description:
+                    type: string
+                    example: this is description for category
+        '400':
+          description: Invalid status value
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error code:
+                    type: string
+                  error message:
+                    type: string
+        '404':
+          description: Page not found
+        '500':
+          description: Internal Server error
+    put:
+      tags:
+        - Category
+      summary: ''
+      description: Update Information about Grocery store Category
+      parameters:
+        - in: path
+          name: name
+          required: true
+          description: Enter Name of Category
+          schema:
+            type: string
+            example: beverages
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  example: this is description of category
+      responses:
+        '200':
+          description: successfully updated
+          content:
+            application/json:
+              schema:
+                title: Category object
+                type: object
+                properties:
+                  category_id:
+                    type: string
+                    example: 1
+                  name:
+                    type: string
+                    example: beverages
+                  description:
+                    type: string
+                    example: this is description for beverages
+        '400':
+          description: Invalid status value
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error code:
+                    type: string
+                  error message:
+                    type: string
+        '404':
+          description: Page not found
+        '500':
+          description: Internal Server error
+    delete:
+      tags:
+        - Category
+      summary: 'Operation to delete Category'
+      description: "You Can't Delete Category if there are product in this category"
+      parameters:
+        - in: path
+          name: name
+          required: true
+          description: Enter Name of Category
+          schema:
+            type: string
+            example: beverages
+      responses:
+        '200':
+          description: successfully deleted
+        '400':
+          description: Invalid status value
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error code:
+                    type: string
+                  error message:
+                    type: string
+        '404':
+          description: user does not exist
+        '500':
+          description: Internal Server error
+  /api/category:
+    summary: This is end point to create category
+    description: This is end point to create category
+    post:
+      description: Operation to create Category.
+      tags:
+        - Category
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: beverages
+                description:
+                  type: string
+                  example: this is description of category
+      responses:
+        '201':
+          description: successfully deleted
+        '400':
+          description: Invalid status value
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error code:
+                    type: string
+                  error message:
+                    type: string
+        '404':
+          description: user does not exist
+        '500':
+          description: Internal Server error  
+          
+          
+          
+###################################################################
+  
+  
+  
+  /product/{name}:
+    description: This is Grocery store api
+    get:
+      tags:
+        - Product
+      summary: ''
+      description: Get Information about Grocery store Products
+      parameters:
+        - in: path
+          name: name
+          required: true
+          description: Enter Name of Product
+          schema:
+            type: string
+            example: beverages
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                title: Product object
+                type: object
+                properties:
+                  product_id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Amul Paneer
+                  expiry_date:
+                    type: string
+                    example: 08-22-2023
+                  price:
+                    type: integer
+                    example: 45
+                  unit:
+                    type: string
+                    example: 400 g
+                  catagory_id:
+                    type: integer
+                    example: 1
+                  description:
+                    type: string
+                    example: this is description for Amul Paneer
+                  quantity: 
+                    type: integer
+                    example: 89
+        '400':
+          description: Invalid status value
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error code:
+                    type: string
+                  error message:
+                    type: string
+        '404':
+          description: Page not found
+        '500':
+          description: Internal Server error
+    put:
+      tags:
+        - Product
+      summary: ''
+      description: Update Information about Grocery store Product
+      parameters:
+        - in: path
+          name: name
+          required: true
+          description: Enter Name of Product
+          schema:
+            type: string
+            example: Paneer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Amul Paneer
+                expiry_date:
+                  type: string
+                  example: 08-22-2023
+                price:
+                  type: integer
+                  example: 45
+                unit:
+                  type: string
+                  example: 400 g
+                catagory_name:
+                  type: string
+                  example: Dairy Products
+                description:
+                  type: string
+                  example: this is description for Amul Paneer
+                quantity: 
+                  type: integer
+                  example: 89
+      responses:
+        '200':
+          description: successfully updated
+          content:
+            application/json:
+              schema:
+                title: Category object
+                type: object
+                properties:
+                  product_id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Amul Paneer
+                  expiry_date:
+                    type: string
+                    example: 08-22-2023
+                  price:
+                    type: integer
+                    example: 45
+                  unit:
+                    type: string
+                    example: 400 g
+                  catagory_id:
+                    type: integer
+                    example: 1
+                  description:
+                    type: string
+                    example: this is description for Amul Paneer
+                  quantity: 
+                    type: integer
+                    example: 89
+        '400':
+          description: Invalid status value
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error code:
+                    type: string
+                  error message:
+                    type: string
+        '404':
+          description: Page not found
+        '500':
+          description: Internal Server error
+    delete:
+      tags:
+        - Product
+      summary: ''
+      description: 'Operation to delete Product'
+      parameters:
+        - in: path
+          name: name
+          required: true
+          description: Enter Name of Product
+          schema:
+            type: string
+            example: Paneer
+      responses:
+        '200':
+          description: successfully deleted
+        '400':
+          description: Invalid status value
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error code:
+                    type: string
+                  error message:
+                    type: string
+        '404':
+          description: user does not exist
+        '500':
+          description: Internal Server error
+          
+  /api/product:
+    summary: This is end point to create Product
+    description: This is end point to create Product
+    post:
+      description: Operation to create Product.
+      tags:
+        - Product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Amul Paneer
+                expiry_date:
+                  type: string
+                  example: 08-22-2023
+                price:
+                  type: integer
+                  example: 45
+                unit:
+                  type: string
+                  example: 400 g
+                catagory_name:
+                  type: integer
+                  example: Paneer
+                description:
+                  type: string
+                  example: this is description for Amul Paneer
+                quantity: 
+                  type: integer
+                  example: 89
+      responses:
+        '201':
+          description: successfully deleted
+        '400':
+          description: Invalid status value
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error code:
+                    type: string
+                  error message:
+                    type: string
+        '404':
+          description: user does not exist
+        '500':
+          description: Internal Server error  
+    

@@ -1,0 +1,53 @@
+/* CSS for the top bar */
+.top-bar {
+background-color: #000b20;
+color: #ffffff;
+padding: 10px;
+font-family: Lucida Bright	
+
+}
+
+/* CSS for the status bar */
+.status-bar {
+background-color: #ffffff;
+padding: 10px;
+font-family: Lucida Bright	
+}
+
+.status-bar a {
+margin-right: 10px;
+color: #163d64;
+text-decoration: none;
+font-family: Lucida Bright	
+}
+
+.content-bar  {
+background-color: #000b20;
+color: #ffffff;
+font-family: Lucida Bright	
+}
+.product {
+background-color: #ffffff;
+color: #13375b;
+padding: 10px;
+font-family: Lucida Bright
+    
+}
+.product-container {
+column-count: 3;
+column-gap: 20px;    
+}
+
+.price {
+break-after: always;    
+}
+
+.form-inline {
+display: flex;
+align-items: center;
+}
+
+.form-inline input[type="number"],
+.form-inline button[type="submit"] {
+margin-right: 10px;
+}

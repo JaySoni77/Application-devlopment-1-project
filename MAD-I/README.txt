@@ -1,0 +1,3 @@
+open folder on vs code or any ide. open app.py run the file. Application will run on local host. you can create account from going to signup page. if you want to give admin role to certain user then open database open role_user table give role"1" to certain user's user id and save it.
+
+The admin page is at 127.0.0.1:5000/admin. You have to type in the URL as there is no link to the admin page from the home page.

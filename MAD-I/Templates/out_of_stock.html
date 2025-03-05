@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Out Of Stock Products</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous"> 
+    <style>
+        /* CSS for the top bar */
+        .top-bar {
+          background-color: #000b20;
+          color: #ffffff;
+          padding: 10px;
+          font-family: Lucida Bright	
+  
+        }
+    
+        /* CSS for the status bar */
+        .status-bar {
+          background-color: #d7ecf1;
+          padding: 10px;
+          font-family: Lucida Bright	
+        }
+    
+        .status-bar a {
+          margin-right: 10px;
+          color: #163d64;
+          text-decoration: none;
+          font-family: Lucida Bright	
+        }
+  
+        .content-bar  {
+          background-color: #000b20;
+          color: #ffffff;
+          font-family: Lucida Bright	
+        }
+        .product {
+          background-color: #ffffff;
+          color: #13375b;
+          padding: 10px;
+          font-family: Lucida Bright	
+        }
+        .product-container {
+          background-color: #ffffff;
+          color: #13375b;
+          padding: 10px;
+          font-family: Lucida Bright;
+          column-count: 2;
+          column-gap: 20px;    
+        }
+      </style>
+</head>
+<body>
+    <div class="top-bar">
+        <center><h1> Out Of Stock Products </h1> </center>
+    </div>
+    <div class="status-bar" >
+        <center>
+          <font size="+2">
+            <a href="/admin"> <em><b> Home Page </b></em> </a>
+            <a href="/all_orders"> <em><b> All Orders </b></em> </a>
+            <a href="/admin_category"> <em><b>Catagory</b></em>  </a><br>
+            <a href="/logout">Logout</a> 
+          </font>
+        </center>
+      </div><br><br>
+      <div class=product-container >
+        {% for item in display_product %}
+        <div class="d-flex align-items-start bg-light mb-2" style="height: 100px;">
+    
+          <div class="col" ><img src="/static/{{item.image_name}}"  class="rounded float-left" alt="image_filename" width="150px" height="120px"></div>&nbsp;
+          
+          <div class="col" >Product Name : {{item["name"]}} </div>
+    
+          <div class="col" >Price : {{item["price"]}} </div>
+    
+          <form action="/view" method="POST">
+            <input type="hidden" name="product_id" value="{{ item.product_id }}">
+            <button type="submit"class="btn btn-info">View</button>
+          </form>&nbsp;
+          <form action="/delete_product" method="POST">
+            <input type="hidden" name="product_id" value="{{ item.product_id }}">
+            <button type="submit"class="btn btn-danger">Delete</button>
+          </form>
+        </div>&nbsp;
+        {% endfor %}
+      </div>
+    </body>
+    </html>
+</body>
