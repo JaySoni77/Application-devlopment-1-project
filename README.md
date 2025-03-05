@@ -23,5 +23,4 @@ I have implemented following features in my application:
 - Category Management: Use can view list of category and Admin can add and delete Category.
 - Shopping cart: Users can add and remove products from their shopping cart
 - Search Functionality: Users and admin can search for products or category using keywords, and the application displays relevant results
-- Api For CRUD operation on category:
-- Styling
+- Api For CRUD operation on category
