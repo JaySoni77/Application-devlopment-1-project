@@ -18,10 +18,10 @@ My project follows model-view-controller architecture. For this project I have c
 
 *Features Implemented:*
 I have implemented following features in my application:
- User registration and Authentication: I have use flask security to make proper login system
- Role-based Access Control: I have implemented role-based access control, allowing admin to manage categories and products while restricting regular users from these actions
- Category Management: Use can view list of category and Admin can add and delete Category.
- Shopping cart: Users can add and remove products from their shopping cart
- Search Functionality: Users and admin can search for products or category using keywords, and the application displays relevant results
- Api For CRUD operation on category:
- Styling:
+- User registration and Authentication: I have use flask security to make proper login system
+- Role-based Access Control: I have implemented role-based access control, allowing admin to manage categories and products while restricting regular users from these actions
+- Category Management: Use can view list of category and Admin can add and delete Category.
+- Shopping cart: Users can add and remove products from their shopping cart
+- Search Functionality: Users and admin can search for products or category using keywords, and the application displays relevant results
+- Api For CRUD operation on category:
+- Styling
